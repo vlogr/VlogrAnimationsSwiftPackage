@@ -2,7 +2,7 @@
 이 프로젝트 활용 계획
 
 <p align="left">
- <img width="500" src="https://user-images.githubusercontent.com/18760280/137105743-ee85761e-e438-4e54-b616-336e0a500946.png">
+ <img width="500" src="https://user-images.githubusercontent.com/18760280/137248038-3bd01224-b5b8-4766-9953-c5dec7c078dd.png">
  </p>
   
  
