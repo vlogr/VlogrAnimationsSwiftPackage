@@ -32,8 +32,8 @@ public struct VlogrAnimation {
         case PushDownAnimation, ScaleDownAnimation, FadeOutAnimation
     }
     
-    let appearance: AppearanceType
-    let kind: Kind
+    public let appearance: AppearanceType
+    public let kind: Kind
     
     private let actualAnimation: VlogrAnimationOutcome
     
