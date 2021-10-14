@@ -7,7 +7,7 @@
 
 import UIKit
 
-public struct VlogrAnimation {
+public struct VlogrAnimation: Decodable, Encodable {
     
     public struct InputVariable {
         // normalized value
@@ -28,7 +28,7 @@ public struct VlogrAnimation {
         case InAnimation, OutAnimation, RepeatAnimation
     }
     
-    public enum Kind: String, CaseIterable {
+    public enum Kind: String, CaseIterable, Codable {
         // custom animations
         case RightFall, Oscillation
         
@@ -39,14 +39,19 @@ public struct VlogrAnimation {
         case PushDownAnimation, ScaleDownAnimation, FadeOutAnimation
     }
     
-    public let appearance: AppearanceType
+    
     public let kind: Kind
     
-    private let actualAnimation: VlogrAnimationOutcome
+    private var appearance: AppearanceType!
+    private var actualAnimation: VlogrAnimationOutcome!
     
     public init(kind:Kind) {
         self.kind = kind
         
+        setAppearanceAndActualAnimationObject()
+    }
+    
+    private mutating func setAppearanceAndActualAnimationObject() {
         switch kind {
         case .RightFall:
             self.actualAnimation = RightFallAnimation.init()
@@ -73,6 +78,23 @@ public struct VlogrAnimation {
             self.actualAnimation = FadeOutAnimation.init()
             self.appearance = .OutAnimation
         }
+    }
+    
+    // MARK: - Encodable, Decodable
+    enum CodingKeys: String, CodingKey {
+        case kind
+    }
+    
+    public init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        kind = try container.decode(Kind.self, forKey: .kind)
+        setAppearanceAndActualAnimationObject()
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(kind, forKey: .kind)
     }
     
     // read values from designed animation object
