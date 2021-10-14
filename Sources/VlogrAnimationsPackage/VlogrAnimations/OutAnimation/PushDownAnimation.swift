@@ -18,10 +18,10 @@ public struct PushDownAnimation: VlogrAnimationOutcome {
         // y position
         let newY = normalizedCenter.y + (VlogrAnimationTimingUtil.inOutTiming(from: progress) * 1.0)
         
-        let originalCenter = VlogrAnimationTimingUtil.worldPoint(from: inputVariable.fixedCenter, worldRect: inputVariable.worldRect)
-        let newCenter = VlogrAnimationTimingUtil.worldPoint(from: CGPoint.init(x: newX, y: newY), worldRect:inputVariable.worldRect)
+//        let originalCenter = VlogrAnimationTimingUtil.worldPoint(from: inputVariable.fixedCenter, worldRect: inputVariable.worldRect)
+//        let newCenter = VlogrAnimationTimingUtil.worldPoint(from: CGPoint.init(x: newX, y: newY), worldRect:inputVariable.worldRect)
         
-        translation = CGPoint.init(x: newCenter.x - originalCenter.x, y: newCenter.y - originalCenter.y)
+        translation = CGPoint.init(x: newX, y: newY)//CGPoint.init(x: newCenter.x - originalCenter.x, y: newCenter.y - originalCenter.y)
         rotation = inputVariable.fixedRotation
         scale = inputVariable.fixedScale
     }

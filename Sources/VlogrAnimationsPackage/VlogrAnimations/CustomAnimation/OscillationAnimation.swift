@@ -18,8 +18,8 @@ public struct OscillationAnimation: VlogrAnimationOutcome {
         // y position
         let newY = normalizedCenter.y + (sin(.pi * 4 * progress) * 0.1)
         
-        let originalCenter = VlogrAnimationTimingUtil.worldPoint(from: inputVariable.fixedCenter, worldRect: inputVariable.worldRect)
-        let newCenter = VlogrAnimationTimingUtil.worldPoint(from: CGPoint.init(x: newX, y: newY), worldRect:inputVariable.worldRect)
+//        let originalCenter = VlogrAnimationTimingUtil.worldPoint(from: inputVariable.fixedCenter, worldRect: inputVariable.worldRect)
+//        let newCenter = VlogrAnimationTimingUtil.worldPoint(from: CGPoint.init(x: newX, y: newY), worldRect:inputVariable.worldRect)
         
         // rotation
         let piX = (sin(.pi * 2 * progress) * 0.1) * (.pi/4.0)
@@ -27,7 +27,7 @@ public struct OscillationAnimation: VlogrAnimationOutcome {
         // scale
         let sc = 1.0
         
-        translation = CGPoint.init(x: newCenter.x - originalCenter.x, y: newCenter.y - originalCenter.y)
+        translation = CGPoint.init(x: newX, y: newY)//CGPoint.init(x: newCenter.x - originalCenter.x, y: newCenter.y - originalCenter.y)
         rotation = piX + inputVariable.fixedRotation
         scale = inputVariable.fixedScale
     }

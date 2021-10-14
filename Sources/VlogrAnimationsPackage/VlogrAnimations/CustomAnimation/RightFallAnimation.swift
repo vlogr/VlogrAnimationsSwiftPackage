@@ -19,8 +19,8 @@ public struct RightFallAnimation: VlogrAnimationOutcome {
         // y position
         let newY = normalizedCenter.y + (VlogrAnimationTimingUtil.gravityTiming(from: progress) * 3.0)
         
-        let originalCenter = VlogrAnimationTimingUtil.worldPoint(from: normalizedCenter, worldRect: inputVariable.worldRect)
-        let newCenter = VlogrAnimationTimingUtil.worldPoint(from: CGPoint.init(x: newX, y: newY), worldRect: inputVariable.worldRect)
+//        let originalCenter = VlogrAnimationTimingUtil.worldPoint(from: normalizedCenter, worldRect: inputVariable.worldRect)
+//        let newCenter = VlogrAnimationTimingUtil.worldPoint(from: CGPoint.init(x: newX, y: newY), worldRect: inputVariable.worldRect)
         
         // rotation
         let piX = (.pi/2.0) * VlogrAnimationTimingUtil.inOutTiming(from: progress)
@@ -28,7 +28,7 @@ public struct RightFallAnimation: VlogrAnimationOutcome {
         // scale
         let sc = 1.0
         
-        translation = CGPoint.init(x: newCenter.x - originalCenter.x, y: newCenter.y - originalCenter.y)
+        translation = CGPoint.init(x: newX, y: newY)//CGPoint.init(x: newCenter.x - originalCenter.x, y: newCenter.y - originalCenter.y)
         rotation = piX + inputVariable.fixedRotation
         scale = inputVariable.fixedScale
     }

@@ -14,13 +14,11 @@ public struct VlogrAnimation: Decodable, Encodable {
         let fixedCenter:CGPoint
         let fixedRotation:CGFloat
         let fixedScale:CGFloat
-        let worldRect:CGRect
         
-        public init(fixedCenter:CGPoint, fixedRotation:CGFloat, fixedScale:CGFloat, worldRect:CGRect) {
+        public init(fixedCenter:CGPoint, fixedRotation:CGFloat, fixedScale:CGFloat) {
             self.fixedCenter = fixedCenter
             self.fixedRotation = fixedRotation
             self.fixedScale = fixedScale
-            self.worldRect = worldRect
         }
     }
     
@@ -102,13 +100,17 @@ public struct VlogrAnimation: Decodable, Encodable {
     }
     
     // MARK: - Convenient functions
-    public func resultTransform(progress: CGFloat, inputVariable: InputVariable) -> (CGAffineTransform, CGFloat) {
-        var translationPoint = CGPoint.zero
+    public func resultTransform(progress: CGFloat, inputVariable: InputVariable, worldRect:CGRect) -> (CGAffineTransform, CGFloat) {
+        var centerPoint = CGPoint.zero
         var rotation: CGFloat = 0
         var scale: CGFloat = 0
         var alpha: CGFloat = 1.0
         
-        result(translation: &translationPoint, rotation: &rotation, scale: &scale, alpha: &alpha, progress: progress, inputVariable: inputVariable)
+        result(translation: &centerPoint, rotation: &rotation, scale: &scale, alpha: &alpha, progress: progress, inputVariable: inputVariable)
+        
+        let originalCenter = VlogrAnimationTimingUtil.worldPoint(from: inputVariable.fixedCenter, worldRect: worldRect)
+        let newCenter = VlogrAnimationTimingUtil.worldPoint(from: centerPoint, worldRect: worldRect)
+        let translationPoint = CGPoint.init(x: newCenter.x - originalCenter.x, y: newCenter.y - originalCenter.y)
         
         let transform1 = CGAffineTransform.init(rotationAngle: rotation)
         let transform2 = CGAffineTransform.init(translationX: translationPoint.x, y: translationPoint.y)
