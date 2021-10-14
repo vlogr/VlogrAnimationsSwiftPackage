@@ -1,4 +1,4 @@
-iI//
+//
 //  FadeOutAnimation.swift
 //  VlogrAnimations
 //
