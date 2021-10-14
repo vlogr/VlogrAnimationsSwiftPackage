@@ -125,5 +125,5 @@ public struct VlogrAnimationTimingUtil {
 }
 
 public protocol VlogrAnimationOutcome {
-    public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha:inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable)
+    func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha:inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable)
 }
