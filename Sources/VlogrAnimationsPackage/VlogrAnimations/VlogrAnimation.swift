@@ -15,6 +15,13 @@ public struct VlogrAnimation {
         let fixedRotation:CGFloat
         let fixedScale:CGFloat
         let worldRect:CGRect
+        
+        public init(fixedCenter:CGPoint, fixedRotation:CGFloat, fixedScale:CGFloat, worldRect:CGRect) {
+            self.fixedCenter = fixedCenter
+            self.fixedRotation = fixedRotation
+            self.fixedScale = fixedScale
+            self.worldRect = worldRect
+        }
     }
     
     public enum AppearanceType: String {
