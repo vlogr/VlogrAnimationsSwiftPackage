@@ -17,11 +17,11 @@ public struct VlogrAnimation {
         let worldRect:CGRect
     }
     
-    enum AppearanceType: String {
+    public enum AppearanceType: String {
         case InAnimation, OutAnimation, RepeatAnimation
     }
     
-    enum Kind: String, CaseIterable {
+    public enum Kind: String, CaseIterable {
         // custom animations
         case RightFall, Oscillation
         
@@ -37,7 +37,7 @@ public struct VlogrAnimation {
     
     private let actualAnimation: VlogrAnimationOutcome
     
-    init(kind:Kind) {
+    public init(kind:Kind) {
         self.kind = kind
         
         switch kind {
