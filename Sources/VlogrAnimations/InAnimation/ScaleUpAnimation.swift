@@ -7,9 +7,9 @@
 
 import UIKit
 
-struct ScaleUpAnimation: VlogrAnimationOutcome {
+public struct ScaleUpAnimation: VlogrAnimationOutcome {
     
-    func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
+    public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
         
         let sc = VlogrAnimationTimingUtil.inOutTiming(from: progress) * inputVariable.fixedScale
         

@@ -7,9 +7,9 @@
 
 import UIKit
 
-struct FadeInAnimation: VlogrAnimationOutcome {
+public struct FadeInAnimation: VlogrAnimationOutcome {
     
-    func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
+    public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
         
         translation = inputVariable.fixedCenter
         rotation = inputVariable.fixedRotation

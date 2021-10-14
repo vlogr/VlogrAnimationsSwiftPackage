@@ -7,9 +7,9 @@
 
 import UIKit
 
-struct VlogrAnimation {
+public struct VlogrAnimation {
     
-    struct InputVariable {
+    public struct InputVariable {
         // normalized value
         let fixedCenter:CGPoint
         let fixedRotation:CGFloat
@@ -69,12 +69,12 @@ struct VlogrAnimation {
     }
     
     // read values from designed animation object
-    func result(translation: inout CGPoint, rotation: inout CGFloat, scale: inout CGFloat, alpha: inout CGFloat, progress: CGFloat, inputVariable: InputVariable) {
+    public func result(translation: inout CGPoint, rotation: inout CGFloat, scale: inout CGFloat, alpha: inout CGFloat, progress: CGFloat, inputVariable: InputVariable) {
         return actualAnimation.result(translation: &translation, rotation: &rotation, scale: &scale, alpha: &alpha, progress: progress, inputVariable: inputVariable)
     }
     
     // MARK: - Convenient functions
-    func resultTransform(progress: CGFloat, inputVariable: InputVariable) -> (CGAffineTransform, CGFloat) {
+    public func resultTransform(progress: CGFloat, inputVariable: InputVariable) -> (CGAffineTransform, CGFloat) {
         var translationPoint = CGPoint.zero
         var rotation: CGFloat = 0
         var scale: CGFloat = 0
@@ -92,38 +92,38 @@ struct VlogrAnimation {
 
 
 // MARK: - Timing Functions
-struct VlogrAnimationTimingUtil {
-    static func inOutTiming(from t:CGFloat) -> CGFloat {
+public struct VlogrAnimationTimingUtil {
+    public static func inOutTiming(from t:CGFloat) -> CGFloat {
         let sqrt = t * t
         
         return sqrt / (2.0 * (sqrt - t) + 1.0)
     }
     
-    static func gravityTiming(from t:CGFloat) -> CGFloat {
+    public static func gravityTiming(from t:CGFloat) -> CGFloat {
         return t * t
     }
     
-    static func inOutCubicTiming(from t:CGFloat) -> CGFloat {
+    public static func inOutCubicTiming(from t:CGFloat) -> CGFloat {
         return t < 0.5 ? 4 * t * t * t : 1 - pow(-2 * t + 2, 3) / 2;
     }
     
-    static func easeOutCubic(from t:CGFloat) -> CGFloat {
+    public static func easeOutCubic(from t:CGFloat) -> CGFloat {
         return 1 - pow(1 - t, 3);
     }
     
-    static func normalizedPoint(from pt:CGPoint, worldRect:CGRect) -> CGPoint {
+    public static func normalizedPoint(from pt:CGPoint, worldRect:CGRect) -> CGPoint {
         let x = pt.x / worldRect.width
         let y = pt.y / worldRect.height
         return CGPoint.init(x: x, y: y)
     }
     
-    static func worldPoint(from pt:CGPoint, worldRect:CGRect) -> CGPoint {
+    public static func worldPoint(from pt:CGPoint, worldRect:CGRect) -> CGPoint {
         let x = worldRect.width * pt.x
         let y = worldRect.height * pt.y
         return CGPoint.init(x: x, y: y)
     }
 }
 
-protocol VlogrAnimationOutcome {
-    func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha:inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable)
+public protocol VlogrAnimationOutcome {
+    public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha:inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable)
 }

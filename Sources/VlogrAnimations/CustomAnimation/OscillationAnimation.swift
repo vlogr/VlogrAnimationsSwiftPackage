@@ -7,9 +7,9 @@
 
 import UIKit
 
-struct OscillationAnimation: VlogrAnimationOutcome {
+public struct OscillationAnimation: VlogrAnimationOutcome {
     
-    func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
+    public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
         
         // x position
         let normalizedCenter = inputVariable.fixedCenter
