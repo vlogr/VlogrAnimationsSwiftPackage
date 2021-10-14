@@ -41,8 +41,7 @@ public struct VlogrAnimation: Decodable, Encodable {
     
     
     public let kind: Kind
-    
-    private var appearance: AppearanceType!
+    public var appearance: AppearanceType!
     private var actualAnimation: VlogrAnimationOutcome!
     
     public init(kind:Kind) {
