@@ -244,6 +244,23 @@ public struct VlogrAnimationTimingUtil {
             return pow(2, -10 * t) * sin(t * 10 - 0.75) * c4 + 1
         }
     }
+    
+    public static func easeOutElastic2(from t:CGFloat) -> CGFloat {
+        let c4 = (2.0 * .pi) / 3
+        
+        if t == 0 {
+            return 0
+        } else if t == 1 {
+            return 1
+        } else {
+            let v = (pow(2, -10 * t) * sin(t * 10 - 0.75) * c4)/2.0 + 1
+            if v > 1.0 {
+                return 1.0
+            } else {
+                return v
+            }
+        }
+    }
 /*
     function easeOutElastic(x: number): number {
     const c4 = (2 * Math.PI) / 3;
