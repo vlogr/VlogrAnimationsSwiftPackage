@@ -31,10 +31,12 @@ public struct VlogrAnimation: Decodable, Encodable {
         case RightFall, Oscillation
         
         // in animations
-        case PushUpToCenterAnimation1, PushRightToCenterAnimation1, PushLeftToCenterAnimation1, PushDownToCenterAnimation1, ScaleUpEasyInoutAnimation, ScaleUpEasyOutElasticAnimation, FadeInAnimation
+        case PushUpToCenterAnimation1, PushRightToCenterAnimation1, PushLeftToCenterAnimation1, PushDownToCenterAnimation1
+        case ScaleUpEasyInoutAnimation, ScaleUpEasyOutElasticAnimation, FadeInAnimation
         
         // out animations
-        case PushDownFromCenterAnimation1, PushLeftFromCenterAnimation1, PushRightFromCenterAnimation1, PushUpFromCenterAnimation1, ScaleDownEasyInoutAnimation, FadeOutAnimation
+        case PushDownFromCenterAnimation1, PushLeftFromCenterAnimation1, PushRightFromCenterAnimation1, PushUpFromCenterAnimation1
+        case ScaleDownEasyInoutAnimation, ScaleDownEasyOutElasticAnimation, FadeOutAnimation
     }
     
     
@@ -104,6 +106,11 @@ public struct VlogrAnimation: Decodable, Encodable {
         case .ScaleDownEasyInoutAnimation:
             self.actualAnimation = ScaleDownEasyInoutAnimation.init()
             self.appearance = .OutAnimation
+            
+        case .ScaleDownEasyOutElasticAnimation:
+            self.actualAnimation = ScaleDownEasyOutElasticAnimation()
+            self.appearance = .OutAnimation
+            
         case .FadeOutAnimation:
             self.actualAnimation = FadeOutAnimation.init()
             self.appearance = .OutAnimation
