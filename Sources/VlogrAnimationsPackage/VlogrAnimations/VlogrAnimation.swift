@@ -31,10 +31,10 @@ public struct VlogrAnimation: Decodable, Encodable {
         case RightFall, Oscillation
         
         // in animations
-        case PushUpToCenterAnimation, ScaleUpEasyInoutAnimation, FadeInAnimation
+        case PushUpToCenterAnimation1, PushRightToCenterAnimation1, PushLeftToCenterAnimation1, PushDownToCenterAnimation1, ScaleUpEasyInoutAnimation, ScaleUpEasyOutElasticAnimation, FadeInAnimation
         
         // out animations
-        case PushDownFromCenterAnimation, ScaleDownEasyInoutAnimation, FadeOutAnimation
+        case PushDownFromCenterAnimation1, PushLeftFromCenterAnimation1, PushRightFromCenterAnimation1, PushUpFromCenterAnimation1, ScaleDownEasyInoutAnimation, FadeOutAnimation
     }
     
     
@@ -56,18 +56,51 @@ public struct VlogrAnimation: Decodable, Encodable {
         case .Oscillation:
             self.actualAnimation = OscillationAnimation.init()
             self.appearance = .RepeatAnimation
-        case .PushDownFromCenterAnimation:
-            self.actualAnimation = PushDownFromCenterAnimation.init()
-            self.appearance = .OutAnimation
-        case .PushUpToCenterAnimation:
-            self.actualAnimation = PushUpToCenterAnimation.init()
+            
+        // inAnimation
+        case .PushUpToCenterAnimation1:
+            self.actualAnimation = PushUpToCenterAnimation1.init()
             self.appearance = .InAnimation
+        case .PushRightToCenterAnimation1:
+            self.actualAnimation = PushRightToCenterAnimation1.init()
+            self.appearance = .InAnimation
+            
+        case .PushLeftToCenterAnimation1:
+            self.actualAnimation = PushLeftToCenterAnimation1.init()
+            self.appearance = .InAnimation
+            
+        case .PushDownToCenterAnimation1:
+            self.actualAnimation = PushDownToCenterAnimation1()
+            self.appearance = .InAnimation
+            
+        case .ScaleUpEasyOutElasticAnimation:
+            self.actualAnimation = ScaleUpEasyOutElasticAnimation()
+            self.appearance = .InAnimation
+            
         case .ScaleUpEasyInoutAnimation:
             self.actualAnimation = ScaleUpEasyInoutAnimation.init()
             self.appearance = .InAnimation
         case .FadeInAnimation:
             self.actualAnimation = FadeInAnimation.init()
             self.appearance = .InAnimation
+            
+        // outAnimation
+        case .PushDownFromCenterAnimation1:
+            self.actualAnimation = PushDownFromCenterAnimation1.init()
+            self.appearance = .OutAnimation
+        
+        case .PushLeftFromCenterAnimation1:
+            self.actualAnimation = PushLeftFromCenterAnimation1.init()
+            self.appearance = .OutAnimation
+            
+        case .PushRightFromCenterAnimation1:
+            self.actualAnimation = PushRightFromCenterAnimation1()
+            self.appearance = .OutAnimation
+            
+        case .PushUpFromCenterAnimation1:
+            self.actualAnimation = PushUpFromCenterAnimation1()
+            self.appearance = .OutAnimation
+            
         case .ScaleDownEasyInoutAnimation:
             self.actualAnimation = ScaleDownEasyInoutAnimation.init()
             self.appearance = .OutAnimation
