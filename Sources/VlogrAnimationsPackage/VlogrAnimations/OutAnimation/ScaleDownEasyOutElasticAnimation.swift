@@ -11,6 +11,10 @@ public struct ScaleDownEasyOutElasticAnimation: VlogrAnimationOutcome {
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
         
-        ScaleUpEasyOutElasticAnimation.init().result(translation: &translation, rotation: &rotation, scale: &scale, alpha: &alpha, progress: (1.0 - progress), inputVariable: inputVariable)
+        let sc = VlogrAnimationTimingUtil.easeOutElastic(from: progress) / inputVariable.fixedScale
+        
+        translation = inputVariable.fixedCenter
+        rotation = inputVariable.fixedRotation
+        scale = sc        
     }
 }
