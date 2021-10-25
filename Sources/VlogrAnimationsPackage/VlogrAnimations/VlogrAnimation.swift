@@ -32,10 +32,14 @@ public struct VlogrAnimation: Decodable, Encodable {
         
         // in animations
         case PushUpToCenterAnimation1, PushRightToCenterAnimation1, PushLeftToCenterAnimation1, PushDownToCenterAnimation1
+        case FadeInAndScaleUpAnimation1, FadeInAndScaleUpAnimation2
+        case FSPushUpToCenterAnimation1, FSPushRightToCenterAnimation1, FSPushLeftToCenterAnimation1, FSPushDownToCenterAnimation1
         case ScaleUpEasyInoutAnimation, ScaleUpEasyOutElasticAnimation, FadeInAnimation
         
         // out animations
         case PushDownFromCenterAnimation1, PushLeftFromCenterAnimation1, PushRightFromCenterAnimation1, PushUpFromCenterAnimation1
+        case FadeOutAndScaleDownAnimation1, FadeOutAndScaleDownAnimation2
+        case FSPushDownFromCenterAnimation1, FSPushLeftFromCenterAnimation1, FSPushRightFromCenterAnimation1, FSPushUpFromCenterAnimation1
         case ScaleDownEasyInoutAnimation, ScaleDownEasyOutElasticAnimation, FadeOutAnimation
     }
     
@@ -75,6 +79,30 @@ public struct VlogrAnimation: Decodable, Encodable {
             self.actualAnimation = PushDownToCenterAnimation1()
             self.appearance = .InAnimation
             
+        case .FadeInAndScaleUpAnimation1:
+            self.actualAnimation = FadeInAndScaleUpAnimation1()
+            self.appearance = .InAnimation
+            
+        case .FadeInAndScaleUpAnimation2:
+            self.actualAnimation = FadeInAndScaleUpAnimation2()
+            self.appearance = .InAnimation
+            
+        case .FSPushUpToCenterAnimation1:
+            self.actualAnimation = FSPushUpToCenterAnimation1()
+            self.appearance = .InAnimation
+            
+        case .FSPushRightToCenterAnimation1:
+            self.actualAnimation = FSPushRightToCenterAnimation1()
+            self.appearance = .InAnimation
+            
+        case .FSPushLeftToCenterAnimation1:
+            self.actualAnimation = FSPushLeftToCenterAnimation1()
+            self.appearance = .InAnimation
+            
+        case .FSPushDownToCenterAnimation1:
+            self.actualAnimation = FSPushDownToCenterAnimation1()
+            self.appearance = .InAnimation
+            
         case .ScaleUpEasyOutElasticAnimation:
             self.actualAnimation = ScaleUpEasyOutElasticAnimation()
             self.appearance = .InAnimation
@@ -101,6 +129,30 @@ public struct VlogrAnimation: Decodable, Encodable {
             
         case .PushUpFromCenterAnimation1:
             self.actualAnimation = PushUpFromCenterAnimation1()
+            self.appearance = .OutAnimation
+            
+        case .FadeOutAndScaleDownAnimation1:
+            self.actualAnimation = FadeOutAndScaleDownAnimation1()
+            self.appearance = .OutAnimation
+            
+        case .FadeOutAndScaleDownAnimation2:
+            self.actualAnimation = FadeOutAndScaleDownAnimation2()
+            self.appearance = .OutAnimation
+            
+        case .FSPushDownFromCenterAnimation1:
+            self.actualAnimation = FSPushDownFromCenterAnimation1()
+            self.appearance = .OutAnimation
+            
+        case .FSPushLeftFromCenterAnimation1:
+            self.actualAnimation = FSPushLeftFromCenterAnimation1()
+            self.appearance = .OutAnimation
+            
+        case .FSPushRightFromCenterAnimation1:
+            self.actualAnimation = FSPushRightFromCenterAnimation1()
+            self.appearance = .OutAnimation
+            
+        case .FSPushUpFromCenterAnimation1:
+            self.actualAnimation = FSPushUpFromCenterAnimation1()
             self.appearance = .OutAnimation
             
         case .ScaleDownEasyInoutAnimation:
