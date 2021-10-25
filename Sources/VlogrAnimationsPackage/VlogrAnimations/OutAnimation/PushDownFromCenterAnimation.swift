@@ -1,5 +1,5 @@
 //
-//  PushDownAnimation.swift
+//  PushDownFromCenterAnimation.swift
 //  VlogrAnimations
 //
 //  Created by vlogrFullName on 2021/10/13.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-public struct PushDownAnimation: VlogrAnimationOutcome {
+public struct PushDownFromCenterAnimation: VlogrAnimationOutcome {
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
         
