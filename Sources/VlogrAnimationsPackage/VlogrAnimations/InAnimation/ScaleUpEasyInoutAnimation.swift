@@ -1,5 +1,5 @@
 //
-//  ScaleUpAnimation.swift
+//  ScaleUpEasyInoutAnimation.swift
 //  VlogrAnimations
 //
 //  Created by vlogrFullName on 2021/10/13.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-public struct ScaleUpAnimation: VlogrAnimationOutcome {
+public struct ScaleUpEasyInoutAnimation: VlogrAnimationOutcome {
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
         
