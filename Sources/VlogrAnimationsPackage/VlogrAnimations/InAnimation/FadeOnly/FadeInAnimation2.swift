@@ -7,15 +7,14 @@
 
 import UIKit
 
-public struct FadeOutAndScaleDownAnimation2: VlogrAnimationOutcome {
+public struct FadeInAnimation2: VlogrAnimationOutcome {
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
         
-        let sc = (1.0 - VlogrAnimationTimingUtil.easeOutElastic2(from: progress)) * inputVariable.fixedScale
-        
         translation = inputVariable.fixedCenter
         rotation = inputVariable.fixedRotation
-        scale = sc
-        alpha = VlogrAnimationTimingUtil.easeOutElastic(from: progress)
+        scale = inputVariable.fixedScale
+        alpha = VlogrAnimationTimingUtil.easeOutCubic(from: progress)
     }
 }
+

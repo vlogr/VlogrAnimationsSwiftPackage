@@ -21,7 +21,7 @@ public struct FSPushLeftFromCenterAnimation1: VlogrAnimationOutcome {
         let newY = normalizedCenter.y
         
         
-        translation = inputVariable.fixedCenter
+        translation = CGPoint.init(x: newX, y: newY)
         rotation = inputVariable.fixedRotation
         scale = sc
         alpha = 1.0 - VlogrAnimationTimingUtil.inOutTiming(from: progress)

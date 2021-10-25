@@ -7,11 +7,9 @@
 
 import UIKit
 
-public struct FSPushRightFromCenterAnimation1: VlogrAnimationOutcome {
+public struct FadeOutPushRightFromCenterAnimation1: VlogrAnimationOutcome {
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
-        
-        let sc = (1.01 - VlogrAnimationTimingUtil.inOutTiming(from: progress)) * inputVariable.fixedScale
         
         // x position
         let normalizedCenter = inputVariable.fixedCenter
@@ -23,7 +21,7 @@ public struct FSPushRightFromCenterAnimation1: VlogrAnimationOutcome {
         
         translation = CGPoint.init(x: newX, y: newY)
         rotation = inputVariable.fixedRotation
-        scale = sc
+        scale = inputVariable.fixedScale
         alpha = 1.0 - VlogrAnimationTimingUtil.inOutTiming(from: progress)
     }
 }

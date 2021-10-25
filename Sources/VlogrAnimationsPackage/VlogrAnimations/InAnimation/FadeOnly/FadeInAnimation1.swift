@@ -1,20 +1,20 @@
 //
-//  File.swift
-//  
+//  FadeInAnimation1.swift
+//  VlogrAnimations
 //
-//  Created by vlogrFullName on 2021/10/25.
+//  Created by vlogrFullName on 2021/10/13.
 //
 
 import UIKit
 
-public struct ScaleUpEasyOutElasticAnimation: VlogrAnimationOutcome {
+public struct FadeInAnimation1: VlogrAnimationOutcome {
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
         
-        let sc = VlogrAnimationTimingUtil.easeOutElastic(from: progress) * inputVariable.fixedScale
-        
         translation = inputVariable.fixedCenter
         rotation = inputVariable.fixedRotation
-        scale = sc
+        scale = inputVariable.fixedScale
+        alpha = VlogrAnimationTimingUtil.inOutTiming(from: progress)
     }
 }
+
