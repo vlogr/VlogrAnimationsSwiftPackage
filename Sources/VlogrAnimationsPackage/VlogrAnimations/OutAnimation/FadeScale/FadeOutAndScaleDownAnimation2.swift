@@ -16,6 +16,6 @@ public struct FadeOutAndScaleDownAnimation2: VlogrAnimationOutcome {
         translation = inputVariable.fixedCenter
         rotation = inputVariable.fixedRotation
         scale = sc
-        alpha = VlogrAnimationTimingUtil.easeOutElastic(from: progress)
+        alpha = 1.0 - VlogrAnimationTimingUtil.easeOutElastic(from: progress)
     }
 }

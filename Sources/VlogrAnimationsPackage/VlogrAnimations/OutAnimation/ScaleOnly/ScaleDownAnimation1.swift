@@ -11,6 +11,10 @@ public struct ScaleDownAnimation1: VlogrAnimationOutcome {
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
         
-        ScaleUpAnimation1.init().result(translation: &translation, rotation: &rotation, scale: &scale, alpha: &alpha, progress: (1.0 - progress), inputVariable: inputVariable)
+        let sc = (1.0 - VlogrAnimationTimingUtil.inOutTiming(from: progress)) * inputVariable.fixedScale
+        
+        translation = inputVariable.fixedCenter
+        rotation = inputVariable.fixedRotation
+        scale = sc
     }
 }

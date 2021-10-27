@@ -12,6 +12,17 @@ public struct FadeInPushDownToCenterAnimation1: VlogrAnimationOutcome {
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
         
-        return FadeOutPushUpFromCenterAnimation1.init().result(translation: &translation, rotation: &rotation, scale: &scale, alpha: &alpha, progress: (1.0 - progress), inputVariable: inputVariable)
+        // x position
+        let normalizedCenter = inputVariable.fixedCenter
+        let newX = normalizedCenter.x
+        
+        // y position
+        let newY = normalizedCenter.y - ((1.0 - VlogrAnimationTimingUtil.inOutTiming(from: progress)) * 1.0)
+        
+        
+        translation = CGPoint.init(x: newX, y: newY)
+        rotation = inputVariable.fixedRotation
+        scale = inputVariable.fixedScale
+        alpha = VlogrAnimationTimingUtil.inOutTiming(from: progress)
     }
 }
