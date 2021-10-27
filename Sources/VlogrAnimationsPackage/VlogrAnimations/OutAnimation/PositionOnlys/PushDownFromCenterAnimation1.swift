@@ -16,7 +16,7 @@ public struct PushDownFromCenterAnimation1: VlogrAnimationOutcome {
         let newX = normalizedCenter.x
         
         // y position
-        let newY = normalizedCenter.y - (VlogrAnimationTimingUtil.inOutTiming(from: progress) * 1.0)
+        let newY = normalizedCenter.y + (VlogrAnimationTimingUtil.inOutTiming(from: progress) * 1.0)
         
         translation = CGPoint.init(x: newX, y: newY)
         rotation = inputVariable.fixedRotation

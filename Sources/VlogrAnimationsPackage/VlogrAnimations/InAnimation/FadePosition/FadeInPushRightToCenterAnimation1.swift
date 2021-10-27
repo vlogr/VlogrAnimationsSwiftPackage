@@ -1,6 +1,6 @@
 //
 //  File 2.swift
-//  
+//
 //
 //  Created by vlogrFullName on 2021/10/25.
 //
@@ -13,7 +13,7 @@ public struct FadeInPushRightToCenterAnimation1: VlogrAnimationOutcome {
         
         // x position
         let normalizedCenter = inputVariable.fixedCenter
-        let newX = normalizedCenter.x + ((1.0 - VlogrAnimationTimingUtil.inOutTiming(from: progress)) * 1.0)
+        let newX = 1.0 - normalizedCenter.x + (VlogrAnimationTimingUtil.inOutTiming(from: progress) * 1.0)
         
         // y position
         let newY = normalizedCenter.y
@@ -22,6 +22,13 @@ public struct FadeInPushRightToCenterAnimation1: VlogrAnimationOutcome {
         translation = CGPoint.init(x: newX, y: newY)
         rotation = inputVariable.fixedRotation
         scale = inputVariable.fixedScale
-        alpha = 1.0 - VlogrAnimationTimingUtil.inOutTiming(from: progress)
+        
+        if progress <= 0.7 {
+            alpha = VlogrAnimationTimingUtil.inOutTiming(from: 0.0)
+        } else {
+            
+            let newProgress = (progress - 0.7) * (1.0/0.3)
+            alpha = VlogrAnimationTimingUtil.inOutTiming(from: newProgress)
+        }
     }
 }

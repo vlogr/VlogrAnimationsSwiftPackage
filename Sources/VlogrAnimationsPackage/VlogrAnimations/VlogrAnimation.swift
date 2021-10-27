@@ -290,33 +290,14 @@ public struct VlogrAnimationTimingUtil {
         }
     }
     
-    public static func easeOutElastic2(from t:CGFloat) -> CGFloat {
-        let c4 = (2.0 * .pi) / 3
+    public static func easeInBack(from t:CGFloat) -> CGFloat {
         
-        if t == 0 {
-            return 0
-        } else if t == 1 {
-            return 1
-        } else {
-            let v = (pow(2, -10 * t) * sin(t * 10 - 0.75) * c4)/2.0 + 1
-            if v > 1.0 {
-                return 1.0
-            } else {
-                return v
-            }
-        }
-    }
-/*
-    function easeOutElastic(x: number): number {
-    const c4 = (2 * Math.PI) / 3;
+        let c1:CGFloat = 1.70158;
+        let c3:CGFloat = c1 + 1;
 
-    return x === 0
-      ? 0
-      : x === 1
-      ? 1
-      : pow(2, -10 * x) * sin((x * 10 - 0.75) * c4) + 1;
+        return c3 * t * t * t - c1 * t * t;
     }
-*/
+    
     public static func normalizedPoint(from pt:CGPoint, worldRect:CGRect) -> CGPoint {
         let x = pt.x / worldRect.width
         let y = pt.y / worldRect.height

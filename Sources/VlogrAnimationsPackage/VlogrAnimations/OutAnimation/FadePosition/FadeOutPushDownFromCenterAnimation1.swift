@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by vlogrFullName on 2021/10/25.
 //
@@ -16,12 +16,18 @@ public struct FadeOutPushDownFromCenterAnimation1: VlogrAnimationOutcome {
         let newX = normalizedCenter.x
         
         // y position
-        let newY = normalizedCenter.y - (VlogrAnimationTimingUtil.inOutTiming(from: progress) * 1.0)
+        let newY = normalizedCenter.y + (VlogrAnimationTimingUtil.inOutTiming(from: progress) * 1.0)
         
         
         translation = CGPoint.init(x: newX, y: newY)
         rotation = inputVariable.fixedRotation
         scale = inputVariable.fixedScale
-        alpha = 1.0 - VlogrAnimationTimingUtil.inOutTiming(from: progress)
+        
+        let newAlpha = 1.0 - VlogrAnimationTimingUtil.easeOutCubic(from: progress * 2.5)
+        if newAlpha <= 0 {
+            alpha = 0
+        } else {
+            alpha = newAlpha
+        }
     }
 }

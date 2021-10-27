@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by vlogrFullName on 2021/10/25.
 //
@@ -16,6 +16,12 @@ public struct FadeInAndScaleUpAnimation2: VlogrAnimationOutcome {
         translation = inputVariable.fixedCenter
         rotation = inputVariable.fixedRotation
         scale = sc
-        alpha = VlogrAnimationTimingUtil.easeOutElastic(from: progress)
+        
+        if progress > 0.5 {
+            alpha = VlogrAnimationTimingUtil.easeOutCubic(from: 1.0)
+        } else {
+            alpha = VlogrAnimationTimingUtil.easeOutCubic(from: progress * 2)
+        }
+        
     }
 }

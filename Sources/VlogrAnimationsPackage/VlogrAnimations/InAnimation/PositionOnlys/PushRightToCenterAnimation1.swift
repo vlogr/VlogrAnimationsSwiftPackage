@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by vlogrFullName on 2021/10/25.
 //
@@ -13,7 +13,7 @@ public struct PushRightToCenterAnimation1: VlogrAnimationOutcome {
         
         // x position
         let normalizedCenter = inputVariable.fixedCenter
-        let newX = normalizedCenter.x + ((1.0 - VlogrAnimationTimingUtil.inOutTiming(from: progress)) * 1.0)
+        let newX = 1.0 - normalizedCenter.x + (VlogrAnimationTimingUtil.inOutTiming(from: progress) * 1.0)
         
         // y position
         let newY = normalizedCenter.y
