@@ -28,7 +28,7 @@ public struct VlogrAnimation: Decodable, Encodable {
     
     public enum Kind: String, CaseIterable, Codable {
         // custom animations
-        case RightFall, Oscillation
+        case Oscillation
         
         // in animations
         case PushUpToCenterAnimation1, PushRightToCenterAnimation1, PushLeftToCenterAnimation1, PushDownToCenterAnimation1
