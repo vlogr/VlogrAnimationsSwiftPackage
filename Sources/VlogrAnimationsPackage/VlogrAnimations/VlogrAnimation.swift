@@ -61,9 +61,9 @@ public struct VlogrAnimation: Decodable, Encodable {
     
     private mutating func setAppearanceAndActualAnimationObject() {
         switch kind {
-        case .RightFall:
-            self.actualAnimation = RightFallAnimation.init()
-            self.appearance = .OutAnimation
+        //case .RightFall:
+        //    self.actualAnimation = RightFallAnimation.init()
+        //    self.appearance = .OutAnimation
         case .Oscillation:
             self.actualAnimation = OscillationAnimation.init()
             self.appearance = .RepeatAnimation
