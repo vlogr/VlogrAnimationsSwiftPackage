@@ -25,7 +25,7 @@ public struct FSPushDownToCenterAnimation1: VlogrAnimationOutcome {
         let newX = normalizedCenter.x
         
         // y position
-        let newY = inputVariable.fixedCenter.y - 1.0 + VlogrAnimationTimingUtil.inOutTiming(from: progress) * 1.0
+        let newY = -1.0 + normalizedCenter.y + (VlogrAnimationTimingUtil.inOutTiming(from: progress) * 1.0)
         
         translation = CGPoint.init(x: newX, y: newY)
         rotation = inputVariable.fixedRotation

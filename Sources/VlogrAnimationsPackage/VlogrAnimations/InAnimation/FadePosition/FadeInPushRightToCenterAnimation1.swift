@@ -13,7 +13,7 @@ public struct FadeInPushRightToCenterAnimation1: VlogrAnimationOutcome {
         
         // x position
         let normalizedCenter = inputVariable.fixedCenter
-        let newX = 1.0 - normalizedCenter.x + (VlogrAnimationTimingUtil.inOutTiming(from: progress) * 1.0)
+        let newX = -1.0 + normalizedCenter.x + (VlogrAnimationTimingUtil.inOutTiming(from: progress) * 1.0)
         
         // y position
         let newY = normalizedCenter.y
@@ -30,5 +30,6 @@ public struct FadeInPushRightToCenterAnimation1: VlogrAnimationOutcome {
             let newProgress = (progress - 0.7) * (1.0/0.3)
             alpha = VlogrAnimationTimingUtil.inOutTiming(from: newProgress)
         }
+        
     }
 }
