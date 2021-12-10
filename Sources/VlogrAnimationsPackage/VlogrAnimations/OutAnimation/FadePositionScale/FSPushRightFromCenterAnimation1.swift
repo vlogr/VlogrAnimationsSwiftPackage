@@ -11,7 +11,7 @@ public struct FSPushRightFromCenterAnimation1: VlogrAnimationOutcome {
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
         
-        let sc = (1.0 - VlogrAnimationTimingUtil.inOutTiming(from: progress)) * inputVariable.fixedScale
+        let sc = (1.0 - progress) * inputVariable.fixedScale
         
         // x position
         let normalizedCenter = inputVariable.fixedCenter
