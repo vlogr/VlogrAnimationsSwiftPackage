@@ -30,7 +30,7 @@ public struct VlogrAnimation: Decodable, Encodable {
     
     public enum Kind: String, CaseIterable, Codable {
         // custom animations
-        //case RightFall, Oscillation
+//        case RightFall, Oscillation
         case Oscillation
         
         // in animations
@@ -84,9 +84,11 @@ public struct VlogrAnimation: Decodable, Encodable {
         
         
         switch kind {
+/*
         case .RightFall:
             self.actualAnimation = RightFallAnimation.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
+*/
         case .Oscillation:
             self.actualAnimation = OscillationAnimation.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .RepeatAnimation
@@ -255,16 +257,21 @@ public struct VlogrAnimation: Decodable, Encodable {
     }
     
     // read values from designed animation object
-    public func result(translation: inout CGPoint, rotation: inout CGFloat, scale: inout CGFloat, alpha: inout CGFloat, progress: CGFloat, inputVariable: InputVariable) {
+    public mutating func result(translation: inout CGPoint, rotation: inout CGFloat, scale: inout CGFloat, alpha: inout CGFloat, progress: CGFloat, inputVariable: InputVariable) {
+        
+        actualAnimation.loadFromFilesIfNeeded()
+        
         return actualAnimation.result(translation: &translation, rotation: &rotation, scale: &scale, alpha: &alpha, progress: progress, inputVariable: inputVariable)
     }
     
     // MARK: - Convenient functions
-    public func resultTransform(progress: CGFloat, inputVariable: InputVariable, worldRect:CGRect) -> (CGAffineTransform, CGFloat) {
+    public mutating func resultTransform(progress: CGFloat, inputVariable: InputVariable, worldRect:CGRect) -> (CGAffineTransform, CGFloat) {
         var centerPoint = CGPoint.zero
         var rotation: CGFloat = 0
         var scale: CGFloat = 0
         var alpha: CGFloat = 1.0
+        
+        actualAnimation.loadFromFilesIfNeeded()
         
         result(translation: &centerPoint, rotation: &rotation, scale: &scale, alpha: &alpha, progress: progress, inputVariable: inputVariable)
         
@@ -336,6 +343,7 @@ public struct VlogrAnimationTimingUtil {
 
 public protocol VlogrAnimationOutcome {
     func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha:inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable)
+    mutating func loadFromFilesIfNeeded()
 }
 
 protocol VlogrAnimationOutcomeArrayUnArchivable {
