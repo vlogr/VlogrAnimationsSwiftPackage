@@ -24,35 +24,25 @@ public struct PushUpToCenterAnimation1: VlogrAnimationOutcome, VlogrAnimationOut
         self._folderUrl = folderUrl
     }
     
-    private var cachedTranslationXs = [CGFloat]()
-    private var cachedTranslationYs = [CGFloat]()
-    private var cachedRotations = [CGFloat]()
-    private var cachedScales = [CGFloat]()
-    private var cachedAlphas = [CGFloat]()
-    private var isCached = false
-    
-    public mutating func loadFromFilesIfNeeded() {
-        let loadedValues = load()
-        if loadedValues.translationX.isEmpty == false {
-            self.cachedTranslationXs = loadedValues.translationX
-            self.cachedTranslationYs = loadedValues.translationY
-            self.cachedRotations = loadedValues.rotation
-            self.cachedScales = loadedValues.scale
-            self.cachedAlphas = loadedValues.alpha
-            
-            self.isCached = true
-        }
-    }
-    
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
         
-        if isCached == true {
+        var loadedValues = VlogrAnimationValueCache.shared.cachedValues(from: kind)
+        if loadedValues == nil {
+            let loadedFromFile = load()
+            if loadedFromFile.translationX.isEmpty == false {
+                VlogrAnimationValueCache.shared.cache(kind: kind, values: loadedFromFile)
+                loadedValues = VlogrAnimationValueCache.shared.cachedValues(from: kind)
+            }
             
-            let translationXs = self.cachedTranslationXs
-            let translationYs = self.cachedTranslationYs
-            let rotations = self.cachedRotations
-            let scales = self.cachedScales
-            let alphas = self.cachedAlphas
+        }
+        
+        if let loadedValues = loadedValues {
+            
+            let translationXs = loadedValues.translationX
+            let translationYs = loadedValues.translationY
+            let rotations = loadedValues.rotation
+            let scales = loadedValues.scale
+            let alphas = loadedValues.alpha
             
             let index = Int((progress * 100.0).rounded())
             
