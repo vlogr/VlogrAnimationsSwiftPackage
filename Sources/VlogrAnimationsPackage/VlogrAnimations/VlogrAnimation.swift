@@ -79,158 +79,159 @@ public struct VlogrAnimation: Decodable, Encodable {
     
     private mutating func setAppearanceAndActualAnimationObject() {
         
-        let documentUrl = getDocumentsDirectory()
+        let folderUrl = getDocumentsDirectory().appendingPathComponent(VlogrAnimation.folderName)
+        
         
         switch kind {
         case .RightFall:
-            self.actualAnimation = RightFallAnimation.init(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = RightFallAnimation.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
         case .Oscillation:
-            self.actualAnimation = OscillationAnimation.init(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = OscillationAnimation.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .RepeatAnimation
             
         // inAnimation
         case .PushUpToCenterAnimation1:
-            self.actualAnimation = PushUpToCenterAnimation1.init(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = PushUpToCenterAnimation1.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
         case .PushRightToCenterAnimation1:
-            self.actualAnimation = PushRightToCenterAnimation1.init(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = PushRightToCenterAnimation1.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         case .PushLeftToCenterAnimation1:
-            self.actualAnimation = PushLeftToCenterAnimation1.init(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = PushLeftToCenterAnimation1.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         case .PushDownToCenterAnimation1:
-            self.actualAnimation = PushDownToCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = PushDownToCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         case .FadeInAndScaleUpAnimation1:
-            self.actualAnimation = FadeInAndScaleUpAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeInAndScaleUpAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         case .FadeInAndScaleUpAnimation2:
-            self.actualAnimation = FadeInAndScaleUpAnimation2(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeInAndScaleUpAnimation2(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         case .FSPushUpToCenterAnimation1:
-            self.actualAnimation = FSPushUpToCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FSPushUpToCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         case .FSPushRightToCenterAnimation1:
-            self.actualAnimation = FSPushRightToCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FSPushRightToCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         case .FSPushLeftToCenterAnimation1:
-            self.actualAnimation = FSPushLeftToCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FSPushLeftToCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         case .FSPushDownToCenterAnimation1:
-            self.actualAnimation = FSPushDownToCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FSPushDownToCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         case .FadeInPushDownToCenterAnimation1:
-            self.actualAnimation = FadeInPushDownToCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeInPushDownToCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         case .FadeInPushLeftToCenterAnimation1:
-            self.actualAnimation = FadeInPushLeftToCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeInPushLeftToCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         case .FadeInPushRightToCenterAnimation1:
-            self.actualAnimation = FadeInPushRightToCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeInPushRightToCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         case .FadeInPushUpToCenterAnimation1:
-            self.actualAnimation = FadeInPushUpToCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeInPushUpToCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         case .ScaleUpAnimation2:
-            self.actualAnimation = ScaleUpAnimation2(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = ScaleUpAnimation2(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         case .ScaleUpAnimation1:
-            self.actualAnimation = ScaleUpAnimation1.init(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = ScaleUpAnimation1.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
         case .FadeInAnimation1:
-            self.actualAnimation = FadeInAnimation1.init(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeInAnimation1.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
         
         case .FadeInAnimation2:
-            self.actualAnimation = FadeInAnimation2.init(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeInAnimation2.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .InAnimation
             
         // outAnimation
         case .PushDownFromCenterAnimation1:
-            self.actualAnimation = PushDownFromCenterAnimation1.init(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = PushDownFromCenterAnimation1.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
         
         case .PushLeftFromCenterAnimation1:
-            self.actualAnimation = PushLeftFromCenterAnimation1.init(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = PushLeftFromCenterAnimation1.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .PushRightFromCenterAnimation1:
-            self.actualAnimation = PushRightFromCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = PushRightFromCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .PushUpFromCenterAnimation1:
-            self.actualAnimation = PushUpFromCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = PushUpFromCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .FadeOutAndScaleDownAnimation1:
-            self.actualAnimation = FadeOutAndScaleDownAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeOutAndScaleDownAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .FadeOutAndScaleDownAnimation2:
-            self.actualAnimation = FadeOutAndScaleDownAnimation2(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeOutAndScaleDownAnimation2(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .FSPushDownFromCenterAnimation1:
-            self.actualAnimation = FSPushDownFromCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FSPushDownFromCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .FSPushLeftFromCenterAnimation1:
-            self.actualAnimation = FSPushLeftFromCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FSPushLeftFromCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .FSPushRightFromCenterAnimation1:
-            self.actualAnimation = FSPushRightFromCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FSPushRightFromCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .FSPushUpFromCenterAnimation1:
-            self.actualAnimation = FSPushUpFromCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FSPushUpFromCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .FadeOutPushDownFromCenterAnimation1:
-            self.actualAnimation = FadeOutPushDownFromCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeOutPushDownFromCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .FadeOutPushLeftFromCenterAnimation1:
-            self.actualAnimation = FadeOutPushLeftFromCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeOutPushLeftFromCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .FadeOutPushRightFromCenterAnimation1:
-            self.actualAnimation = FadeOutPushRightFromCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeOutPushRightFromCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .FadeOutPushUpFromCenterAnimation1:
-            self.actualAnimation = FadeOutPushUpFromCenterAnimation1(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeOutPushUpFromCenterAnimation1(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .ScaleDownAnimation1:
-            self.actualAnimation = ScaleDownAnimation1.init(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = ScaleDownAnimation1.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .ScaleDownAnimation2:
-            self.actualAnimation = ScaleDownAnimation2(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = ScaleDownAnimation2(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
             
         case .FadeOutAnimation1:
-            self.actualAnimation = FadeOutAnimation1.init(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeOutAnimation1.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
         
         case .FadeOutAnimation2:
-            self.actualAnimation = FadeOutAnimation2.init(kind: kind, folderUrl: documentUrl.appendingPathComponent(kind.rawValue))
+            self.actualAnimation = FadeOutAnimation2.init(kind: kind, folderUrl: folderUrl.appendingPathComponent(kind.rawValue))
             self.appearance = .OutAnimation
         }
     }
