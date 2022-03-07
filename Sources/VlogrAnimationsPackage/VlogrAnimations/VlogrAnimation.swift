@@ -49,7 +49,7 @@ public struct VlogrAnimation: Decodable, Encodable {
         case ScaleDownAnimation1, ScaleDownAnimation2
         case FadeOutAnimation1, FadeOutAnimation2
         
-        var valueFileNames: [String] {
+        public var valueFileNames: [String] {
             
             var names = [String]()
             for i in 1...5 {
@@ -381,8 +381,8 @@ extension VlogrAnimationOutcomeArrayUnArchivable {
 }
 
 /// for archiving, unarchiving animation array values
-extension VlogrAnimation {
-    static func archivingObject(from values:[CGFloat]) -> String {
+public extension VlogrAnimation {
+    public static func archivingObject(from values:[CGFloat]) -> String {
         var str = ""
         for (i,v) in values.enumerated() {
             if i > 0 {
@@ -393,7 +393,7 @@ extension VlogrAnimation {
         return str
     }
     
-    static func unarchived(from str:String) -> [CGFloat] {
+    public static func unarchived(from str:String) -> [CGFloat] {
         
         var values = [CGFloat]()
         let components = str.components(separatedBy: ",")
