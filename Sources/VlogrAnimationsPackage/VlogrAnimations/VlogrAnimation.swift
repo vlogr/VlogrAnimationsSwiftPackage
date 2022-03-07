@@ -9,7 +9,7 @@ import UIKit
 
 public struct VlogrAnimation: Decodable, Encodable {
     
-    public static var folderName = "VlogrAnimation"
+    public @objc static var folderName = "VlogrAnimation"
     
     public struct InputVariable {
         // normalized value
@@ -30,7 +30,8 @@ public struct VlogrAnimation: Decodable, Encodable {
     
     public enum Kind: String, CaseIterable, Codable {
         // custom animations
-        case RightFall, Oscillation
+        //case RightFall, Oscillation
+        case Oscillation
         
         // in animations
         case PushUpToCenterAnimation1, PushRightToCenterAnimation1, PushLeftToCenterAnimation1, PushDownToCenterAnimation1
