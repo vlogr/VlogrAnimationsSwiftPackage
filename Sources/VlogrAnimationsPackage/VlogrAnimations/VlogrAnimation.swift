@@ -9,7 +9,7 @@ import UIKit
 
 public struct VlogrAnimation: Decodable, Encodable {
     
-    public @objc static var folderName = "VlogrAnimation"
+    public static var folderName = "VlogrAnimation"
     
     public struct InputVariable {
         // normalized value
