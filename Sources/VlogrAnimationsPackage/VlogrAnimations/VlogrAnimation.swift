@@ -9,6 +9,8 @@ import UIKit
 
 public struct VlogrAnimation: Decodable, Encodable {
     
+    public static var fileNamePrefix = "VlogrAnimation"
+    
     public struct InputVariable {
         // normalized value
         let fixedCenter:CGPoint
@@ -28,7 +30,7 @@ public struct VlogrAnimation: Decodable, Encodable {
     
     public enum Kind: String, CaseIterable, Codable {
         // custom animations
-        case Oscillation
+        case RightFall, Oscillation
         
         // in animations
         case PushUpToCenterAnimation1, PushRightToCenterAnimation1, PushLeftToCenterAnimation1, PushDownToCenterAnimation1
@@ -46,12 +48,23 @@ public struct VlogrAnimation: Decodable, Encodable {
         case FadeOutPushDownFromCenterAnimation1, FadeOutPushLeftFromCenterAnimation1, FadeOutPushRightFromCenterAnimation1, FadeOutPushUpFromCenterAnimation1
         case ScaleDownAnimation1, ScaleDownAnimation2
         case FadeOutAnimation1, FadeOutAnimation2
+        
+        var valueFileNames: [String] {
+            
+            var names = [String]()
+            for i in 1...5 {
+                let name = fileNamePrefix + self.rawValue + "\(i).txt"
+                names.append(name)
+            }
+            
+            return names
+        }
     }
     
     
     public let kind: Kind
     public var appearance: AppearanceType!
-    private var actualAnimation: VlogrAnimationOutcome!
+    var actualAnimation: VlogrAnimationOutcome!
     
     public init(kind:Kind) {
         self.kind = kind
@@ -59,157 +72,165 @@ public struct VlogrAnimation: Decodable, Encodable {
         setAppearanceAndActualAnimationObject()
     }
     
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
     private mutating func setAppearanceAndActualAnimationObject() {
+        
+        let documentUrl = getDocumentsDirectory()
+        
         switch kind {
-        //case .RightFall:
-        //    self.actualAnimation = RightFallAnimation.init()
-        //    self.appearance = .OutAnimation
+        case .RightFall:
+            self.actualAnimation = RightFallAnimation.init(kind: kind, folderUrl: documentUrl)
+            self.appearance = .OutAnimation
         case .Oscillation:
-            self.actualAnimation = OscillationAnimation.init()
+            self.actualAnimation = OscillationAnimation.init(kind: kind, folderUrl: documentUrl)
             self.appearance = .RepeatAnimation
             
         // inAnimation
         case .PushUpToCenterAnimation1:
-            self.actualAnimation = PushUpToCenterAnimation1.init()
+            self.actualAnimation = PushUpToCenterAnimation1.init(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
         case .PushRightToCenterAnimation1:
-            self.actualAnimation = PushRightToCenterAnimation1.init()
+            self.actualAnimation = PushRightToCenterAnimation1.init(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         case .PushLeftToCenterAnimation1:
-            self.actualAnimation = PushLeftToCenterAnimation1.init()
+            self.actualAnimation = PushLeftToCenterAnimation1.init(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         case .PushDownToCenterAnimation1:
-            self.actualAnimation = PushDownToCenterAnimation1()
+            self.actualAnimation = PushDownToCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         case .FadeInAndScaleUpAnimation1:
-            self.actualAnimation = FadeInAndScaleUpAnimation1()
+            self.actualAnimation = FadeInAndScaleUpAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         case .FadeInAndScaleUpAnimation2:
-            self.actualAnimation = FadeInAndScaleUpAnimation2()
+            self.actualAnimation = FadeInAndScaleUpAnimation2(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         case .FSPushUpToCenterAnimation1:
-            self.actualAnimation = FSPushUpToCenterAnimation1()
+            self.actualAnimation = FSPushUpToCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         case .FSPushRightToCenterAnimation1:
-            self.actualAnimation = FSPushRightToCenterAnimation1()
+            self.actualAnimation = FSPushRightToCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         case .FSPushLeftToCenterAnimation1:
-            self.actualAnimation = FSPushLeftToCenterAnimation1()
+            self.actualAnimation = FSPushLeftToCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         case .FSPushDownToCenterAnimation1:
-            self.actualAnimation = FSPushDownToCenterAnimation1()
+            self.actualAnimation = FSPushDownToCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         case .FadeInPushDownToCenterAnimation1:
-            self.actualAnimation = FadeInPushDownToCenterAnimation1()
+            self.actualAnimation = FadeInPushDownToCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         case .FadeInPushLeftToCenterAnimation1:
-            self.actualAnimation = FadeInPushLeftToCenterAnimation1()
+            self.actualAnimation = FadeInPushLeftToCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         case .FadeInPushRightToCenterAnimation1:
-            self.actualAnimation = FadeInPushRightToCenterAnimation1()
+            self.actualAnimation = FadeInPushRightToCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         case .FadeInPushUpToCenterAnimation1:
-            self.actualAnimation = FadeInPushUpToCenterAnimation1()
+            self.actualAnimation = FadeInPushUpToCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         case .ScaleUpAnimation2:
-            self.actualAnimation = ScaleUpAnimation2()
+            self.actualAnimation = ScaleUpAnimation2(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         case .ScaleUpAnimation1:
-            self.actualAnimation = ScaleUpAnimation1.init()
+            self.actualAnimation = ScaleUpAnimation1.init(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
         case .FadeInAnimation1:
-            self.actualAnimation = FadeInAnimation1.init()
+            self.actualAnimation = FadeInAnimation1.init(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
         
         case .FadeInAnimation2:
-            self.actualAnimation = FadeInAnimation2.init()
+            self.actualAnimation = FadeInAnimation2.init(kind: kind, folderUrl: documentUrl)
             self.appearance = .InAnimation
             
         // outAnimation
         case .PushDownFromCenterAnimation1:
-            self.actualAnimation = PushDownFromCenterAnimation1.init()
+            self.actualAnimation = PushDownFromCenterAnimation1.init(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
         
         case .PushLeftFromCenterAnimation1:
-            self.actualAnimation = PushLeftFromCenterAnimation1.init()
+            self.actualAnimation = PushLeftFromCenterAnimation1.init(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .PushRightFromCenterAnimation1:
-            self.actualAnimation = PushRightFromCenterAnimation1()
+            self.actualAnimation = PushRightFromCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .PushUpFromCenterAnimation1:
-            self.actualAnimation = PushUpFromCenterAnimation1()
+            self.actualAnimation = PushUpFromCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .FadeOutAndScaleDownAnimation1:
-            self.actualAnimation = FadeOutAndScaleDownAnimation1()
+            self.actualAnimation = FadeOutAndScaleDownAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .FadeOutAndScaleDownAnimation2:
-            self.actualAnimation = FadeOutAndScaleDownAnimation2()
+            self.actualAnimation = FadeOutAndScaleDownAnimation2(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .FSPushDownFromCenterAnimation1:
-            self.actualAnimation = FSPushDownFromCenterAnimation1()
+            self.actualAnimation = FSPushDownFromCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .FSPushLeftFromCenterAnimation1:
-            self.actualAnimation = FSPushLeftFromCenterAnimation1()
+            self.actualAnimation = FSPushLeftFromCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .FSPushRightFromCenterAnimation1:
-            self.actualAnimation = FSPushRightFromCenterAnimation1()
+            self.actualAnimation = FSPushRightFromCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .FSPushUpFromCenterAnimation1:
-            self.actualAnimation = FSPushUpFromCenterAnimation1()
+            self.actualAnimation = FSPushUpFromCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .FadeOutPushDownFromCenterAnimation1:
-            self.actualAnimation = FadeOutPushDownFromCenterAnimation1()
+            self.actualAnimation = FadeOutPushDownFromCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .FadeOutPushLeftFromCenterAnimation1:
-            self.actualAnimation = FadeOutPushLeftFromCenterAnimation1()
+            self.actualAnimation = FadeOutPushLeftFromCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .FadeOutPushRightFromCenterAnimation1:
-            self.actualAnimation = FadeOutPushRightFromCenterAnimation1()
+            self.actualAnimation = FadeOutPushRightFromCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .FadeOutPushUpFromCenterAnimation1:
-            self.actualAnimation = FadeOutPushUpFromCenterAnimation1()
+            self.actualAnimation = FadeOutPushUpFromCenterAnimation1(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .ScaleDownAnimation1:
-            self.actualAnimation = ScaleDownAnimation1.init()
+            self.actualAnimation = ScaleDownAnimation1.init(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .ScaleDownAnimation2:
-            self.actualAnimation = ScaleDownAnimation2()
+            self.actualAnimation = ScaleDownAnimation2(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
             
         case .FadeOutAnimation1:
-            self.actualAnimation = FadeOutAnimation1.init()
+            self.actualAnimation = FadeOutAnimation1.init(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
         
         case .FadeOutAnimation2:
-            self.actualAnimation = FadeOutAnimation2.init()
+            self.actualAnimation = FadeOutAnimation2.init(kind: kind, folderUrl: documentUrl)
             self.appearance = .OutAnimation
         }
     }
@@ -313,4 +334,76 @@ public struct VlogrAnimationTimingUtil {
 
 public protocol VlogrAnimationOutcome {
     func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha:inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable)
+}
+
+protocol VlogrAnimationOutcomeArrayUnArchivable {
+    var fileNames: [String] { get }
+    var folderUrl: URL { get }
+    func load() -> (translationX:[CGFloat], translationY:[CGFloat], rotation:[CGFloat], scale:[CGFloat], alpha:[CGFloat])
+}
+
+extension VlogrAnimationOutcomeArrayUnArchivable {
+    
+    func load() -> (translationX:[CGFloat], translationY:[CGFloat], rotation:[CGFloat], scale:[CGFloat], alpha:[CGFloat]) {
+        
+        let urls = fileNames.map({folderUrl.appendingPathComponent($0)})
+
+        var strings = [String]()
+        for url in urls {
+            var str = ""
+            do {
+                try str = String.init(contentsOf: url)
+            } catch {
+                print("cannnot load file")
+                continue
+            }
+            
+            strings.append(str)
+        }
+
+        guard strings.count == 5 else {
+            print("number of files unmatched")
+            return ([CGFloat](),[CGFloat](),[CGFloat](),[CGFloat](),[CGFloat]())
+        }
+        
+        // parse strings
+        // expected input: 1.000, 3.000, 1.342, ... , 0.0 total 101 float values in an array
+        let v1 = VlogrAnimation.unarchived(from: strings[0])
+        let v2 = VlogrAnimation.unarchived(from: strings[1])
+        let v3 = VlogrAnimation.unarchived(from: strings[2])
+        let v4 = VlogrAnimation.unarchived(from: strings[3])
+        let v5 = VlogrAnimation.unarchived(from: strings[4])
+        
+        return (v1,v2,v3,v4,v5)
+    }
+    
+}
+
+/// for archiving, unarchiving animation array values
+extension VlogrAnimation {
+    static func archivingObject(from values:[CGFloat]) -> String {
+        var str = ""
+        for (i,v) in values.enumerated() {
+            if i > 0 {
+                str = str + ","
+            }
+            str = str + String.init(format: "%lf", v)
+        }
+        return str
+    }
+    
+    static func unarchived(from str:String) -> [CGFloat] {
+        
+        var values = [CGFloat]()
+        let components = str.components(separatedBy: ",")
+        for component in components {
+            
+            if let doubleValue = Double.init(component) {
+                values.append(CGFloat(doubleValue))
+            }
+            
+        }
+        
+        return values
+    }
 }
