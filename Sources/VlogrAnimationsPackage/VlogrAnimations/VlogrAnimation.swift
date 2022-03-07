@@ -9,7 +9,7 @@ import UIKit
 
 public struct VlogrAnimation: Decodable, Encodable {
     
-    public static var fileNamePrefix = "VlogrAnimation"
+    public static var folderName = "VlogrAnimation"
     
     public struct InputVariable {
         // normalized value
@@ -53,7 +53,7 @@ public struct VlogrAnimation: Decodable, Encodable {
             
             var names = [String]()
             for i in 1...5 {
-                let name = fileNamePrefix + self.rawValue + "\(i).txt"
+                let name = self.rawValue + "\(i).txt"
                 names.append(name)
             }
             
