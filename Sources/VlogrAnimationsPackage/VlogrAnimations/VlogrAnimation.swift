@@ -343,44 +343,6 @@ public protocol VlogrAnimationOutcome {
 protocol VlogrAnimationOutcomeArrayUnArchivable {
     var fileNames: [String] { get }
     var folderUrl: URL { get }
-    func load() -> (translationX:[CGFloat], translationY:[CGFloat], rotation:[CGFloat], scale:[CGFloat], alpha:[CGFloat])
-}
-
-extension VlogrAnimationOutcomeArrayUnArchivable {
-    
-    func load() -> (translationX:[CGFloat], translationY:[CGFloat], rotation:[CGFloat], scale:[CGFloat], alpha:[CGFloat]) {
-        
-        let urls = fileNames.map({folderUrl.appendingPathComponent($0)})
-
-        var strings = [String]()
-        for url in urls {
-            var str = ""
-            do {
-                try str = String.init(contentsOf: url)
-            } catch {
-                print("cannnot load file")
-                continue
-            }
-            
-            strings.append(str)
-        }
-
-        guard strings.count == 5 else {
-            print("number of files unmatched")
-            return ([CGFloat](),[CGFloat](),[CGFloat](),[CGFloat](),[CGFloat]())
-        }
-        
-        // parse strings
-        // expected input: 1.000, 3.000, 1.342, ... , 0.0 total 101 float values in an array
-        let v1 = VlogrAnimation.unarchived(from: strings[0])
-        let v2 = VlogrAnimation.unarchived(from: strings[1])
-        let v3 = VlogrAnimation.unarchived(from: strings[2])
-        let v4 = VlogrAnimation.unarchived(from: strings[3])
-        let v5 = VlogrAnimation.unarchived(from: strings[4])
-        
-        return (v1,v2,v3,v4,v5)
-    }
-    
 }
 
 /// for archiving, unarchiving animation array values

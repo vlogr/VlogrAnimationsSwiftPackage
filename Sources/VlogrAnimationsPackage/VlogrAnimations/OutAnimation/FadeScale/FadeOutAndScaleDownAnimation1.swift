@@ -28,7 +28,7 @@ public struct FadeOutAndScaleDownAnimation1: VlogrAnimationOutcome, VlogrAnimati
         
         var loadedValues = VlogrAnimationValueCache.shared.cachedValues(from: kind)
         if loadedValues == nil {
-            let loadedFromFile = load()
+            let loadedFromFile = VlogrAnimationFileManager.shared.load(fileNames: fileNames, folderUrl: folderUrl)
             if loadedFromFile.translationX.isEmpty == false {
                 VlogrAnimationValueCache.shared.cache(kind: kind, values: loadedFromFile)
                 loadedValues = VlogrAnimationValueCache.shared.cachedValues(from: kind)
