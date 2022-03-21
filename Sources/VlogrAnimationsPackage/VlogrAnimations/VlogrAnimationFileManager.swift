@@ -20,7 +20,7 @@ public class VlogrAnimationFileManager: NSObject {
     private var cacheMap = [VlogrAnimation.Kind.RawValue:ReturnValue]()
     
     // MARK: - File Loading,Writing
-    func loadIfNeeded(fileNames:[String], folderUrl:URL, kind:VlogrAnimation.Kind) {
+    public func loadIfNeeded(fileNames:[String], folderUrl:URL, kind:VlogrAnimation.Kind) {
         
         queue.sync {
             let urls = fileNames.map({folderUrl.appendingPathComponent($0)})
@@ -56,7 +56,7 @@ public class VlogrAnimationFileManager: NSObject {
         
     }
     
-    func saveToFile(translationXs: [CGFloat], translationYs: [CGFloat], rotations: [CGFloat], scales: [CGFloat], alphas: [CGFloat], urls:[URL]) -> Bool {
+    public func saveToFile(translationXs: [CGFloat], translationYs: [CGFloat], rotations: [CGFloat], scales: [CGFloat], alphas: [CGFloat], urls:[URL]) -> Bool {
         
         var returnValue = false
         
@@ -82,7 +82,7 @@ public class VlogrAnimationFileManager: NSObject {
     
     
     // MARK: - In-Memory Caching
-    func cachedValues(from kind:VlogrAnimation.Kind) -> ReturnValue? {
+    public func cachedValues(from kind:VlogrAnimation.Kind) -> ReturnValue? {
         
         var value: ReturnValue?
         
