@@ -7,7 +7,7 @@
 
 import UIKit
 
-class VlogrAnimationFileManager: NSObject {
+public class VlogrAnimationFileManager: NSObject {
     public static var shared: VlogrAnimationFileManager = {
         return VlogrAnimationFileManager()
     }()
