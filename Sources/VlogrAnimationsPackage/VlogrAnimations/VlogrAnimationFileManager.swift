@@ -14,7 +14,7 @@ public class VlogrAnimationFileManager: NSObject {
     
     private var queue = DispatchQueue.init(label: "VlogrAnimationFileManager")
     
-    typealias ReturnValue = (translationX:[CGFloat], translationY:[CGFloat], rotation:[CGFloat], scale:[CGFloat], alpha:[CGFloat])
+    public typealias ReturnValue = (translationX:[CGFloat], translationY:[CGFloat], rotation:[CGFloat], scale:[CGFloat], alpha:[CGFloat])
     
     // string:tuple
     private var cacheMap = [VlogrAnimation.Kind.RawValue:ReturnValue]()
