@@ -26,25 +26,33 @@ public struct FadeInPushLeftToCenterAnimation1: VlogrAnimationOutcome, VlogrAnim
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
         
-        var loadedValues = VlogrAnimationValueCache.shared.cachedValues(from: kind)
-        if loadedValues == nil {
-            let loadedFromFile = VlogrAnimationFileManager.shared.load(fileNames: fileNames, folderUrl: folderUrl)
-            if loadedFromFile.translationX.isEmpty == false {
-                VlogrAnimationValueCache.shared.cache(kind: kind, values: loadedFromFile)
-                loadedValues = VlogrAnimationValueCache.shared.cachedValues(from: kind)
-            }
-            
+        var cachedValues = VlogrAnimationFileManager.shared.cachedValues(from: kind)
+        
+        if cachedValues == nil {
+            VlogrAnimationFileManager.shared.loadIfNeeded(fileNames: fileNames, folderUrl: folderUrl, kind: kind)
+            cachedValues = VlogrAnimationFileManager.shared.cachedValues(from: kind)
         }
         
-        if let loadedValues = loadedValues {
+        if let cachedValues = cachedValues,
+           cachedValues.translationX.count > 100,
+           cachedValues.translationY.count > 100,
+           cachedValues.rotation.count > 100,
+           cachedValues.scale.count > 100,
+           cachedValues.alpha.count > 100 {
             
-            let translationXs = loadedValues.translationX
-            let translationYs = loadedValues.translationY
-            let rotations = loadedValues.rotation
-            let scales = loadedValues.scale
-            let alphas = loadedValues.alpha
+            let translationXs = cachedValues.translationX
+            let translationYs = cachedValues.translationY
+            let rotations = cachedValues.rotation
+            let scales = cachedValues.scale
+            let alphas = cachedValues.alpha
             
-            let index = Int((progress * 100.0).rounded())
+            // trim index so that 0 to 100
+            var index = Int((progress * 100.0).rounded())
+            if index < 0 {
+                index = 0
+            } else if index > 100 {
+                index = 100
+            }
             
             let newX = translationXs[index] + inputVariable.fixedCenter.x
             let newY = translationYs[index] + inputVariable.fixedCenter.y

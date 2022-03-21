@@ -14,9 +14,13 @@ class VlogrAnimationFileManager: NSObject {
     
     private var queue = DispatchQueue.init(label: "VlogrAnimationFileManager")
     
-    func load(fileNames:[String], folderUrl:URL) -> (translationX:[CGFloat], translationY:[CGFloat], rotation:[CGFloat], scale:[CGFloat], alpha:[CGFloat]) {
-        
-        var returnValues: (translationX:[CGFloat], translationY:[CGFloat], rotation:[CGFloat], scale:[CGFloat], alpha:[CGFloat]) = ([CGFloat](),[CGFloat](),[CGFloat](),[CGFloat](),[CGFloat]())
+    typealias ReturnValue = (translationX:[CGFloat], translationY:[CGFloat], rotation:[CGFloat], scale:[CGFloat], alpha:[CGFloat])
+    
+    // string:tuple
+    private var cacheMap = [VlogrAnimation.Kind.RawValue:ReturnValue]()
+    
+    // MARK: - File Loading,Writing
+    func loadIfNeeded(fileNames:[String], folderUrl:URL, kind:VlogrAnimation.Kind) {
         
         queue.sync {
             let urls = fileNames.map({folderUrl.appendingPathComponent($0)})
@@ -45,14 +49,14 @@ class VlogrAnimationFileManager: NSObject {
                 let v4 = VlogrAnimation.unarchived(from: strings[3])
                 let v5 = VlogrAnimation.unarchived(from: strings[4])
                 
-                returnValues = (v1, v2, v3, v4, v5)
+                // save to cache
+                cache(kind: kind, values: (v1,v2,v3,v4,v5))
             }
         }
         
-        return returnValues
     }
     
-    fileprivate func saveToFile(translationXs: [CGFloat], translationYs: [CGFloat], rotations: [CGFloat], scales: [CGFloat], alphas: [CGFloat], urls:[URL]) -> Bool {
+    func saveToFile(translationXs: [CGFloat], translationYs: [CGFloat], rotations: [CGFloat], scales: [CGFloat], alphas: [CGFloat], urls:[URL]) -> Bool {
         
         var returnValue = false
         
@@ -76,5 +80,23 @@ class VlogrAnimationFileManager: NSObject {
         return returnValue
     }
     
+    
+    // MARK: - In-Memory Caching
+    func cachedValues(from kind:VlogrAnimation.Kind) -> ReturnValue? {
+        
+        var value: ReturnValue?
+        
+        queue.sync {
+            if let v = cacheMap[kind.rawValue] {
+                value = v
+            }
+        }
+        
+        return value
+    }
+    
+    private func cache(kind: VlogrAnimation.Kind, values:ReturnValue) {
+        cacheMap[kind.rawValue] = values
+    }
 }
 
