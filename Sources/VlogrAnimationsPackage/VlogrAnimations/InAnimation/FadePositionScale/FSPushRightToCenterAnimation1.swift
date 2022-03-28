@@ -25,7 +25,7 @@ public struct FSPushRightToCenterAnimation1: VlogrAnimationOutcome, VlogrAnimati
     }
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
-        
+        /*
         var cachedValues = VlogrAnimationFileManager.shared.cachedValues(from: kind)
         
         if cachedValues == nil {
@@ -67,7 +67,7 @@ public struct FSPushRightToCenterAnimation1: VlogrAnimationOutcome, VlogrAnimati
             
             return
         }
-        
+        */
         var sc = inputVariable.fixedScale
         
         if progress <= 0.5 {

@@ -25,7 +25,7 @@ public struct FadeOutAndScaleDownAnimation2: VlogrAnimationOutcome, VlogrAnimati
     }
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
-        
+        /*
         var cachedValues = VlogrAnimationFileManager.shared.cachedValues(from: kind)
         
         if cachedValues == nil {
@@ -67,7 +67,7 @@ public struct FadeOutAndScaleDownAnimation2: VlogrAnimationOutcome, VlogrAnimati
             
             return
         }
-        
+        */
         var sc = (1.0 - VlogrAnimationTimingUtil.easeOutElastic(from: progress)) * inputVariable.fixedScale
         
         if sc <= 0.0 {

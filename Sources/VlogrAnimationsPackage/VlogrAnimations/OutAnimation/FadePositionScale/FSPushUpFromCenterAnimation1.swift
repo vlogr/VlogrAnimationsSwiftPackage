@@ -25,7 +25,7 @@ public struct FSPushUpFromCenterAnimation1: VlogrAnimationOutcome, VlogrAnimatio
     }
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
-        
+        /*
         var cachedValues = VlogrAnimationFileManager.shared.cachedValues(from: kind)
         
         if cachedValues == nil {
@@ -67,7 +67,7 @@ public struct FSPushUpFromCenterAnimation1: VlogrAnimationOutcome, VlogrAnimatio
             
             return
         }
-        
+        */
         let sc = (1.0 - progress) * inputVariable.fixedScale
         
         // x position

@@ -25,7 +25,7 @@ public struct ScaleDownAnimation2: VlogrAnimationOutcome, VlogrAnimationOutcomeA
     }
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
-        
+        /*
         var cachedValues = VlogrAnimationFileManager.shared.cachedValues(from: kind)
         
         if cachedValues == nil {
@@ -67,6 +67,7 @@ public struct ScaleDownAnimation2: VlogrAnimationOutcome, VlogrAnimationOutcomeA
             
             return
         }
+        */
         
         var sc = (1.0 - VlogrAnimationTimingUtil.easeOutElastic(from: progress)) * inputVariable.fixedScale
         

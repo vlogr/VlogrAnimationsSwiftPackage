@@ -26,6 +26,7 @@ public struct FadeInPushLeftToCenterAnimation1: VlogrAnimationOutcome, VlogrAnim
     
     public func result(translation:inout CGPoint, rotation:inout CGFloat, scale:inout CGFloat, alpha: inout CGFloat, progress:CGFloat, inputVariable:VlogrAnimation.InputVariable) {
         
+        /*
         var cachedValues = VlogrAnimationFileManager.shared.cachedValues(from: kind)
         
         if cachedValues == nil {
@@ -67,6 +68,7 @@ public struct FadeInPushLeftToCenterAnimation1: VlogrAnimationOutcome, VlogrAnim
             
             return
         }
+        */
         
         // x position
         let normalizedCenter = inputVariable.fixedCenter
